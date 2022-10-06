@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:Ashennes.Views.SettingsPage"
+             xmlns:c="clr-namespace:Ashennes.Controls"
+             xmlns:m="clr-namespace:Ashennes.Models"
+             x:Class="Ashennes.Views.SettingsPage.SettingsPageView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Button">
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+        <Style TargetType="HorizontalStackLayout">
+            <Setter Property="Margin" Value="21" />
+        </Style>
+        <c:EnumItemsSource
+            x:Key="WizardTypeItemsSource"
+            Type="{x:Type m:WizardType}"/>
+        <c:EnumItemsSource
+            x:Key="MedallionTypeItemsSource"
+            Type="{x:Type m:MedallionType}"/>
+
+    </ContentPage.Resources>
+    <ScrollView Margin="10" VerticalOptions="StartAndExpand">
+        <VerticalStackLayout>
+            <dxe:ComboBoxEdit LabelText="Class:"
+                              IsVisible="{Binding Settings.CanEditInitialSettings}"
+                              ItemsSource="{StaticResource WizardTypeItemsSource}"
+                              SelectedValue="{Binding Settings.SelectedClass, Converter={StaticResource WizardTypeItemsSource}}" />
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+                <HorizontalStackLayout >
+                    <Label Text="Class:" Margin="0,0,5,0" />
+                    <Label Text="{Binding Settings.SelectedClass, Converter={StaticResource WizardTypeItemsSource}}" />
+                </HorizontalStackLayout>
+            </Border>
+            <dxe:ComboBoxEdit LabelText="Necklace:"
+                              IsVisible="{Binding Settings.CanEditInitialSettings}"
+                              ItemsSource="{StaticResource MedallionTypeItemsSource}"
+                              SelectedValue="{Binding Settings.SelectedMedallion, Converter={StaticResource MedallionTypeItemsSource}}" />
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+                <HorizontalStackLayout>
+                    <Label Text="Necklace:" Margin="0,0,5,0" />
+                    <Label Text="{Binding Settings.SelectedMedallion, Converter={StaticResource MedallionTypeItemsSource}}" />
+                </HorizontalStackLayout>
+            </Border>
+            <dxe:ComboBoxEdit LabelText="Character Level:" 
+                              IsVisible="{Binding Settings.CanEditInitialSettings}"
+                              ItemsSource="{Binding LevelOptions}"
+                              SelectedItem="{Binding Settings.Level}" />
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+                <HorizontalStackLayout>
+                    <Label Text="Level:" Margin="0,0,5,0" />
+                    <Label Text="{Binding Settings.Level}" />
+                </HorizontalStackLayout>
+
+            </Border>
+            <dxe:NumericEdit LabelText="Spell Bonus Damage:"
+                             Value="{Binding Settings.BonusSpellDamage}"
+                             MinValue="0"
+                             MaxValue="100" TextHorizontalAlignment="Start"
+                             SelectValueOnFocus="True"
+                             MaxDecimalDigitCount="0" />
+            <!--<dxe:NumericEdit LabelText="Spell Skill Check Bonus Damage:"
+                             Value="{Binding Settings.BonusSkillCheckDamage}"
+                             MinValue="0"
+                             MaxValue="100" TextHorizontalAlignment="Start"
+                             SelectValueOnFocus="True"
+                             MaxDecimalDigitCount="0" />-->
+            <dxe:CheckEdit Label="Enable Bardsong Bonus" LabelColor="White" LabelHorizontalAlignment="End" LabelVerticalAlignment="Center" CheckBoxAlignment="Start" CheckBoxPosition="Start" HorizontalOptions="Center" LabelFontSize="Body"
+                           IsChecked="{Binding Settings.IsBardBonusEnabled}"/>
+            <dxe:NumericEdit LabelText="Bonus Damage from Bard song:"
+                             Value="{Binding Settings.BonusBardSpellDamage}"
+                             MinValue="0"
+                             MaxValue="100" TextHorizontalAlignment="Start"
+                             SelectValueOnFocus="True"
+                             MaxDecimalDigitCount="0" />
+            <dxc:SimpleButton Text="Apply Settings" Margin="0,30" IsVisible="{Binding Settings.CanEditInitialSettings}"
+                Command="{Binding StartRunCommand}" />
+            <dxc:SimpleButton Text="Reset Class Settings" Margin="0,30" IsVisible="{Binding Settings.CanViewSpellList}"
+                Command="{Binding ResetSettingsCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

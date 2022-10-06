@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Ashennes.Views.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewSettings="clr-namespace:Ashennes.Views.SettingsPage"
+    xmlns:viewRules="clr-namespace:Ashennes.Views.RulesPage"
+    xmlns:viewSpellList="clr-namespace:Ashennes.Views.SpellListPage"
+    xmlns:viewCastSpell="clr-namespace:Ashennes.Views.CastSpellPage"
+    xmlns:viewCastSpellConfirm="clr-namespace:Ashennes.Views.CastSpellConfirmationPage"
+    xmlns:viewCastSpellResults="clr-namespace:Ashennes.Views.CastSpellResultsPage"
+    FlyoutBackgroundColor="Black"
+    xmlns:views="clr-namespace:Ashennes.Views">
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Image Source="{Binding Settings.TokenImage}" HorizontalOptions="Center" WidthRequest="250"/>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    <!-- We need an extra settings page here so that the menu can be hidden at first -->
+    <FlyoutItem Route="Init" FlyoutItemIsVisible="False">
+        <ShellContent Route="SettingsPage" Title="Settings"
+            ContentTemplate="{DataTemplate viewSettings:SettingsPageView}" />
+    </FlyoutItem>
+    <!-- Main Views-->
+    <FlyoutItem Route="Root" Title="Spell List" Icon="smallfire.svg"
+                FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent Route="SpellListPage" Title="Spell List"
+            IsVisible="{Binding Settings.CanViewSpellList}"
+            ContentTemplate="{DataTemplate viewSpellList:SpellListPageView}" />
+    </FlyoutItem>
+    <FlyoutItem Route="Root" Title="Spell Chain" Icon="frostfire.svg"
+                FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent
+            Title="Spell Chain"
+            Route="SpellQueue"
+            IsVisible="{Binding Settings.CanViewSpellList}"
+            ContentTemplate="{DataTemplate viewCastSpellConfirm:CastSpellConfirmationPageView}" />
+    </FlyoutItem>
+    <FlyoutItem Route="Root" Title="Rule Book" Icon="book.svg"
+                FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent Route="BookRulesPage" Title="Powers"
+            IsVisible="{Binding Settings.CanViewSpellList}"
+            ContentTemplate="{DataTemplate viewRules:RulesPageView}" />
+    </FlyoutItem>
+    <FlyoutItem Route="Root" Title="Settings" Icon="gears.svg"
+                FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent Route="SettingsPage" Title="Settings"
+            ContentTemplate="{DataTemplate viewSettings:SettingsPageView}" />
+    </FlyoutItem>
+    <!-- Other Views -->
+    <FlyoutItem Route="Cast" Title="Cast A Spell" Icon="smallfire.svg"
+            FlyoutDisplayOptions="AsSingleItem"
+            FlyoutItemIsVisible="False">
+        <ShellContent
+            Title="Cast A Spell" 
+            Route="CastSpellPage"
+            ContentTemplate="{DataTemplate viewCastSpell:CastSpellPageView}" />
+    </FlyoutItem>
+    <FlyoutItem Route="Cast" Title="Spell Results" Icon="smallfire.svg"
+            FlyoutDisplayOptions="AsSingleItem"
+            FlyoutItemIsVisible="False">
+        <ShellContent
+            Title="Spell Results" 
+            Route="CastSpellResultsPage"
+            ContentTemplate="{DataTemplate viewCastSpellResults:CastSpellResultsPageView}" />
+    </FlyoutItem>
+</Shell>

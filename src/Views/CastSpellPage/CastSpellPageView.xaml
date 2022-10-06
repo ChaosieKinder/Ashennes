@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             x:Class="Ashennes.Views.CastSpellPage.CastSpellPageView">
+    <StackLayout>
+        <dxe:ComboBoxEdit LabelText="Select a spell" 
+                          PlaceholderText="Select a spell"
+                          DisplayMember="NameDropdownDisplay"
+                          ItemsSource="{Binding Settings.Spells}" 
+                          SelectedItem="{Binding SelectedSpell}"/>
+        <Label Text="{Binding Spell.SpellText}" 
+               VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
+               HorizontalTextAlignment="Center" />
+
+        <Grid ColumnSpacing="8" RowSpacing="8" Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <dxc:SimpleButton Text="MEC"
+                              Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                              IsVisible="{Binding CanMec}"
+                              TextColor="{Binding MecForegroundColor}"
+                              Background="{Binding MecBackgroundBrush}"
+                              Command="{Binding ToggleMECCommand}" />
+            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="1"
+                              HeightRequest="45"
+                              TextHorizontalAlignment="Center"
+                              BorderThickness="0"
+                              DisabledBorderThickness="0"
+                              FocusedBorderThickness="0"
+                              IsVisible="{Binding CanAlter}"
+                              TextColor="{Binding AlterForegroundColor}"
+                              Background="{Binding AlterBackgroundBrush}"
+                              ItemsSource="{Binding AlterEnergyTypes}" 
+                              SelectedItem="{Binding AlterSelectedEnergyType}" />
+            <dxc:SimpleButton Text="Assure"
+                              Grid.Column="1" Grid.Row="1"
+                              IsVisible="{Binding Settings.IsAshenne}"
+                              TextColor="{Binding AssureForegroundColor}"
+                              Background="{Binding AssureBackgroundBrush}"
+                              Command="{Binding ToggleAssureCommand}" />
+            <dxc:SimpleButton Text="Boost"
+                              Grid.Column="0" Grid.Row="2"
+                              IsVisible="{Binding CanBoost}"
+                              TextColor="{Binding BoostForegroundColor}"
+                              Background="{Binding BoostBackgroundBrush}"
+                              Command="{Binding ToggleBoostCommand}" />
+            <dxc:SimpleButton Text="Conserve"
+                              Grid.Column="1" Grid.Row="2"
+                              IsVisible="{Binding Settings.IsAshenne}"
+                              TextColor="{Binding ConserveForegroundColor}"
+                              Background="{Binding ConserveBackgroundBrush}"
+                              Command="{Binding ToggleConserveCommand}" />
+            <dxc:SimpleButton Text="Fork"
+                              Grid.Column="0" Grid.Row="3"
+                              IsVisible="{Binding CanFork}"
+                              TextColor="{Binding ForkForegroundColor}"
+                              Background="{Binding ForkBackgroundBrush}"
+                              Command="{Binding ToggleForkCommand}" />
+            <dxc:SimpleButton Text="Intensify"
+                              Grid.Column="1" Grid.Row="3"
+                              TextColor="{Binding IntensifyForegroundColor}"
+                              Background="{Binding IntensifyBackgroundBrush}"
+                              Command="{Binding ToggleIntensifyCommand}" />
+            <dxc:SimpleButton Text="Quicken"
+                              Grid.Column="0" Grid.Row="4"
+                              TextColor="{Binding QuickenForegroundColor}"
+                              Background="{Binding QuickenBackgroundBrush}"
+                              Command="{Binding ToggleQuickenCommand}" />
+            <dxc:SimpleButton Text="Sharpen" 
+                              Grid.Column="1" Grid.Row="4"
+                              IsVisible="{Binding CanSharpen}"
+                              TextColor="{Binding SharpenForegroundColor}"
+                              Background="{Binding SharpenBackgroundBrush}"
+                              Command="{Binding ToggleSharpenCommand}" />
+        </Grid>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="This spell will cost " />
+            <Label Text="{Binding Spell.HpCost}" />
+            <Label Text="hp to cast." />
+        </StackLayout>
+        <dxc:SimpleButton Text="{Binding SaveText}" Margin="14" Command="{Binding CastASpellCommand}" />
+    </StackLayout>
+</ContentPage>

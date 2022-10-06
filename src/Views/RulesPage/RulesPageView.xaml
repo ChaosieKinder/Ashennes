@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Ashennes.Views.RulesPage.RulesPageView"
+             Title="Rule Book">
+    <ContentPage.Resources>
+        <Style TargetType="dxc:SimpleButton">
+            <Setter Property="CornerRadius" Value="1"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalContentAlignment" Value="Start"/>
+        </Style>
+        <Style TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="BackgroundColor" Value="#333" />
+        </Style>
+        <ResourceDictionary>
+            <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView Orientation="Vertical" IsClippedToBounds="False" >
+        <StackLayout FlowDirection="LeftToRight" IsClippedToBounds="False">
+            <Image Source="{Binding Settings.TokenImage}" HorizontalOptions="Center" HeightRequest="250" Margin="0,10,0,0" />
+            <Label Text="Ashennes Arch-Mage"
+                   TextColor="Orange" FontAttributes="Bold" FontSize="25" Margin="8,0,8,0"
+                   HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                   IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}" />
+            <Label Text="Medallion"
+                   TextColor="Orange" FontAttributes="Bold" FontSize="25"
+                   HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                   IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}" />
+            <Label Text="Mage Medallion"
+                   TextColor="Blue" FontAttributes="Bold" FontSize="26" 
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding Settings.IsAshenne, Converter={StaticResource InvertedBoolConverter}, Mode=TwoWay}" />
+            <dxc:SimpleButton Text="Rules" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding RulesIcon}"
+                              Command="{Binding ToggleRulesHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsRulesVisible}">
+                <Label Margin="8,0,8,10">
+                    In addition to the power granted by Mad Evoker’s Charm (see below), once per round Mage Medallion allows a wizard to modify a cast Spell (excluding any scrolls or “as a scroll” effects) with one or more of the Mage Power (MP) effects listed below.
+                </Label>
+                <Label Margin="8,0,8,10" IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}">
+                    Ashenne's Arch-Mage Medallion additionally grants access to Arch-Mage Powers (AMP) in addition to the Mage Powers (MP) granted by the Mage Medallion. For the sake of brevity, whenever you see 'MP', you can assume the same functionality applies to AMP's, they are effectively treated as the same thing.
+                </Label>
+                <Label Margin="8,0,8,10" IsVisible="{Binding Settings.IsAshenne, Converter={StaticResource InvertedBoolConverter}, Mode=TwoWay}">
+                    Wizards can only use a specific MP once per room, but they can use up to four different MPs in a room. The four selected MPs can be used on one to four Spells. A wizard could use four MPs on a single Spell, two MPs on two Spells, or any combination of one through four MPs on one through four Spells the caster desires. No more than one Spell per round can be modified in this manner. Mage Power modifications may, if desired, be used on a Spell whose damage was doubled by the Mad Evoker’s Charm (MEC) effect.
+                </Label>
+                <Label Margin="8,0,8,10" IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}">
+                    Wizards can only use a specific MP once per room, but they can use up to six different MPs in a room. The six selected MPs can be used on one to six Spells. A wizard could use six MPs on a single Spell, two MPs on three Spells, or any combination of one through four MPs on one through six Spells the caster desires. No more than one Spell per round can be modified in this manner. Mage Power modifications may, if desired, be used on a Spell whose damage was doubled by the Mad Evoker’s Charm (MEC) effect.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    With the possible exception of quicken (see below), the use of any MP effect(s) requires the wizard to expend their Free Action for that round but, modifying a single Spell with more than one MP only requires a single Free Action.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Each MP used requires the wizard to sacrifice 5 HP (in addition to the 25 HP sacrifice required by the MEC effect–if the wearer also chooses to invoke the MEC effect) before casting the modified Spell. This sacrifice is an Instant Action. E.g., using three MPs on one Spell requires a single 15 HP sacrifice. Wizards may not die from MP usage as they currently must have at least one more hit point than the total hit points lost to the MP(s) used on a Spell. This HP sacrifice is a cost that must be paid before the modified Spell is cast. If the cost is not paid, the MP does not happen. I.e., you cannot mitigate the HP sacrifice. You can heal the HP sacrifice afterword, but you can’t prevent, negate, or reduce it at the time of the sacrifice. Wizards able to cast more than one Spell in a round may only use MP(s) on one of those Spells. However, they could use the MEC ability on one Spell and an MP on a different Spell.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Some additional rare restrictions may apply:
+                </Label>
+                <Label IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}">
+                    - If boost is used on a fighter who is wearing Viv’s Amulet of Noble Might and using the double strike ability and the fighter scores a melee hit while there is a 2nd monster within melee range, the boost damage is only applied to the primary target.
+                </Label>
+                <Label>
+                    - If a player somehow manages to equip both a Mage Medallion and Ashenne's Arch-Mage Medallion, the powers do not stack. Likewise, Mad Evokers Charm does not stack, and equipping one along with either Mage Medallion would be pointless.
+                </Label>
+                <Label>
+                    - Horn of the Valkyrie can NOT be used to mitigate the HP sacrifice for Arch-Mage or Mage Powers.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Mad Evokers Charm (MEC):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding MecIcon}"
+                              Command="{Binding ToggleMecHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsMecVisible}">
+                <Label Margin="8,0,8,10">
+                    The wearer has the option to double the base damage (including the extra damage from passing the planar skill check, but no other bonuses) of a cast Spell (excluding any scrolls or “as a scroll” effects), but when doing so the caster suffers 25 points of Eldritch damage. It’s only usable once per round, but other than that it may be used as often as desired. Mad Evoker’s Charm (MEC) must be activated before casting the Spell, so the caster takes the 25 damage whether the Spell is successful or not.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    If a wizard wearing both a MEC and a Ring of Wizardry slides a natural 20 on a Spell modified by the MEC, the additional damage from MEC is also doubled.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Q1) Can MEC be used if the damage would kill the wizard?
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A1) No. The 25 damage is a cost which must be paid to use it. Therefore, the caster must have at least 26 HP remaining at the time this token is activated. The Paladin’s Sacrifice ability can not be used to bypass the restriction that the Wizard must have 26 HP when this token is activated.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Q2) When does the wizard suffer the damage
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A2) The instant before the Spell is cast.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Q3) When used with the Cabal set power, are both Spells doubled?
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A3) No. Only one Spell’s damage gets doubled; the caster chooses which one.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Q4) What happens when this is used with a multi-target Spell?
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A4) The Spell’s base damage (+skill check) is dealt to all eligible targets and an additional pool of damage equal to the base damage (+skill check) is dealt to eligible targets as the caster sees fit. E.g., if burning hands is cast and the skill check is passed, all eligible targets take 9 points of Fire damage and a pool of 9 additional points of damage is allocated per the caster’s wishes.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Do the effects of this item interact with Crazed Evoker’s Amulet? Can MEC be equipped with either Mage Medallion or Ashenne’s Arch-Mage Medallion?
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A wizard could equip both Crazed Evoker’s Amulet and Mad Evoker’s Charm and alternate between using them, but only one Evoker item is usable per Spell. Technically you could equip MEC with Mage Medallion or Ashenne’s Arch-Mage Medallion, but it’s pointless to do so. Both of the mage medallions give you all the MEC abilities and they do not stack with each other.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Q6) Can Horn of the Valkyrie be used to mitigate the damage taken by MEC?
+                </Label>
+                <Label Margin="8,0,8,10">
+                    A6) No.
+                </Label>
+            </StackLayout>
+            <BoxView />
+            <Label FontAttributes="Bold" Margin="0,10,0,10" FontSize="Large">
+                Mage Powers:
+            </Label>
+            <BoxView />
+            <dxc:SimpleButton Text="Absorb (AMP):" 
+                              IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding AbsorbIcon}"
+                              Command="{Binding ToggleAbsorbHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsAbsorbVisible}">
+                <Label Margin="8,0,8,10">
+                    As an Instant Action, the wizard can reduce the amount they receive from a single Melee, Missile or Spell attack during a monster’s turn by sacrificing one use of any 1st, 2nd, or 3rd-level Spell. This damage mitigation only affects the wizard. It can be used to reduce the damage the wizard receives from an AoE attack, but no other character’s damage gets mitigated. For every level of the sacrificed Spell, the amount of damage is reduced by 25 hit points. Thus, sacrificing a 1st-level Spell negates 25 damage, a 2nd-level Spell negates 50 damage, and a 3rd-level Spell negates 75 damage. The 5 HP cost for using an Arch-Mage Power is deducted after the monster damage is reduced by this Arch-Mage Power.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Note: Absorb cannot be used in conjunction with Conserve. The Spell must be marked off the class card.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Alter (MP):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding AlterIcon}"
+                              Command="{Binding ToggleAlterHeaderCommand}" />
+            <Label Margin="8,0,8,10" IsVisible="{Binding IsAlterVisible}">
+                Allows the caster to change the damage type of any Spell to Cold, Fire, or Shock. E.g., a fireball Spell could be made to deal Cold damage instead of Fire damage.
+            </Label>
+            <dxc:SimpleButton Text="Assure (AMP):" 
+                              IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding AssureIcon}"
+                              Command="{Binding ToggleAssureHeaderCommand}" />
+            <Label Margin="8,0,8,10" IsVisible="{Binding IsAssureVisible}">
+                Allows the casting of a Spell under conditions that would otherwise prevent Spell casting. These conditions include standing within a magical silence effect, being underwater, Paralyzed, Held, or within an anti-magic field. However, the wizard’s mind must be clear and unaffected to use this Arch-Mage Power. Mind-affected conditions include, but are not limited to being: Asleep, Charmed, Confused, Dazed, Feared, Feebleminded, Petrified, Stunned, Unconscious, or any condition which prevents mental actions that is not specifically circumvented in the first part of this description (e.g., held).
+            </Label>
+            <dxc:SimpleButton Text="Boost (AMP):" 
+                              IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding BoostIcon}"
+                              Command="{Binding ToggleBoostHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsBoostVisible}">
+                <Label Margin="8,0,8,10">
+                    Wizards may channel the base damage of a Spell into the base damage of a single melee or missile attack made by an ally. If you use boost on a monk making a flurry of blows attack or a ranger making a dual-weapon melee attack, it can only affect one of the slides. It automatically affects the best of the two slides, as determined after all the pucks for that round have been slid. The wizard has the option to include bonus MEC damage or just the base damage of the Spell. If the Spell has a skill check and the skill check is successful, that extra damage is also included, but no other bonus damage can be channeled. If the targeted ally hits, the base damage of the Spell, skill check bonus (if applicable and successful) and, if desired, the MEC damage, is added to the base damage result of the slid weapon. No other damage modifiers to Spell damage are included with the use of boost. Damage channeled by boost is not subject to Spell Resistance or Magic Damage Reduction and is not negated if either the wizard or the targeted ally is in an anti-magic zone. If a channeled Spell requires a slide, the Spell’s slide is assumed to have hit without making an actual slide. However, the target ally is required to perform (and succeed on) an actual weapon attack slide.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Boost must be applied before the target makes their attack slide. Boost does not affect your ally’s To Hit modifier–only their damage is affected. If the ally misses, this use of boost is wasted.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Unlike other AMPs, using boost does not technically cast a Spell. Instead of modifying a cast Spell, boost channels the raw arcane energy of what would have been a Spell into the kinetic energy of an ally’s weapon attack. E.g., using one of your castings of ray of shock to boost an ally’s hammer swing does not infuse the hammer with electricity, but if the hammer hits, it deals more blunt damage.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Boost cannot be used in conjunction with any other AMPs/MPs. In addition, boost can’t be used with another token’s effects. I.e., channeled boost damage may be used in conjunction with this token’s MEC ability and (if applicable) the Spell’s skill check bonus, but that’s it.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    The recipient of boost can only benefit from one boost at a time. If the party has two wizards, the wizards cannot simultaneously boost a given target. The wizards could boost two different allies on the same round or boost the same target ally on different rounds.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    If the physical attack being boosted can affect more than one monster, only the initial target of the attack benefits from the boost. E.g., if a wizard uses boost on a fighter using double strike (from Viv’s Amulet of Noble Might), only the original target benefits from the extra damage from boost. Likewise for something like Fireseed Hickorynut.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Using boost breaks the wizard’s invisibility and any other effects broken by taking an Offensive Action.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Conserve (AMP):" 
+                              IsVisible="{Binding Settings.IsAshenne, Mode=TwoWay}"
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding ConserveIcon}"
+                              Command="{Binding ToggleConserveHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsConserveVisible}">
+                <Label Margin="8,0,8,10">
+                    Allows a Spell to be cast without marking it off the class card.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Fork (MP):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding ForkIcon}"
+                              Command="{Binding ToggleForkHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsForkVisible}">
+                <Label Margin="8,0,8,10">
+                    Causes a single target damage Spell to affect one additional target. Both targets are dealt the same damage, including all* bonus damage modifiers the initial target was subjected to. This MP may only be used on Spells which cause HP damage. If a Spell causes HP damage and has a secondary, non-HP damage inflicting effect, the Spell cannot be forked. E.g., if there were a Spell dealt 20 Cold damage and caused the character to be Stunned, that Spell could not be forked.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    *If the first target has a special vulnerability that the second target does not, the extra damage from that vulnerability is not passed on to the second target. E.g., if the first target is an Ice Elemental and the second target is an Earth Elemental, if the wizard forks scorching ray, the Ice Elemental’s +5 damage from Fire does not get passed on to the Earth Elemental.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Intensify (MP):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding IntensifyIcon}"
+                              Command="{Binding ToggleIntensifyHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsIntensifyVisible}">
+                <Label Margin="8,0,8,10">
+                    If a monster has Spell Resistance, an intensified Spell reduces the target’s Spell Resistance to 25%, but only for the intensified Spell. This power does not affect any other Spells cast by the wizard nor other characters’ Spells.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Note: Intensify reduces the target’s existing SR to 25%, not by 25%. Using this MP on a target with SR of 25% or less does nothing and would be a waste.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Quicken (MP):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding QuickenIcon}"
+                              Command="{Binding ToggleQuickenHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsQuickenVisible}">
+                <Label Margin="8,0,8,10">
+                    Allows the modified Spell to be cast as an Instant Action–but only during the wizard’s turn.  Thus, in some circumstances, it might be possible to cast three Spells in a single round: one as a Standard Action, one as a Free Action, and one as an Instant Action. When quicken is used, the wearer mentally channels the casting of the spell through the medallion. The result of this channeling allows the medallion to cast the Spell by proxy and as an Instant Action. The Spell still gets marked off the player’s class card, but since the medallion is doing the work of casting, the wearer’s hands are free to do other things (e.g., cast another Spell as a Standard Action, make a weapon attack, drink a potion, etc.) Spells cast in this manner are not “cast as a scroll” and may be modified.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Note: Unlike all other Mage Powers, quicken does not expend the caster’s Free Action for the round–unless another Mage Power is used on the same Spell. When quicken is used in conjunction with another Mage Power, the caster’s Free Action is consumed.
+                </Label>
+            </StackLayout>
+            <dxc:SimpleButton Text="Sharpen (MP):" 
+                              BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}"
+                              Icon="{Binding SharpenIcon}"
+                              Command="{Binding ToggleSharpenHeaderCommand}" />
+            <StackLayout IsVisible="{Binding IsSharpenVisible}">
+                <Label Margin="8,0,8,10">
+                    The Spell modified by this MP can crit on a natural 18-20. It may only be used on a Spell that requires a To Hit slide. This power must be announced before the player performs the affected Spell’s attack slide.
+                </Label>
+                <Label Margin="8,0,8,10">
+                    Note: Sharpen is not effective against creatures you cannot critically hit. This includes, but is not limited to creatures without a vital anatomy, Constructs, incorporeal creatures, Oozes, Plants, and Undead. However, if you are able to overcome a creature’s crit immunity, sharpen is effective against that creature.
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

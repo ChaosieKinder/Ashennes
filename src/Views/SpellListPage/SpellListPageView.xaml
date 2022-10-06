@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Ashennes.Views.SpellListPage.SpellListPageView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="4"/>
+            </Style>
+            <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="48" />
+        </Grid.RowDefinitions>
+        <dxcv:DXCollectionView ItemsSource="{Binding Settings.Spells}"
+                         AllowGroupCollapse="True" SelectionMode="None">
+            <dxcv:DXCollectionView.GroupDescription>
+                <dxcv:GroupDescription FieldName="Level" GroupInterval="Value" SortOrder="Ascending" />
+            </dxcv:DXCollectionView.GroupDescription>
+            <dxcv:DXCollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid BackgroundColor="{AppThemeBinding Light={StaticResource LightGray}, Dark={StaticResource DarkGray}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <Image IsVisible="{Binding IsCollapsed}" Source="caret_right.svg" HorizontalOptions="Center" />
+                            <Image IsVisible="{Binding IsCollapsed, Converter={StaticResource InvertedBoolConverter}}" Source="caret_down.svg" HorizontalOptions="Center" />
+                            <Label Grid.Column="1" Text="{Binding HeaderText}" Padding="0,10,0,10" FontAutoScalingEnabled="True"/>
+                        </Grid>
+                        <BoxView BackgroundColor="#333" HeightRequest="1" />
+                    </StackLayout>
+                </DataTemplate>
+            </dxcv:DXCollectionView.GroupHeaderTemplate>
+            <dxcv:DXCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="75" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Name}" FontAutoScalingEnabled="True" />
+                        <dxcv:DXCollectionView ItemsSource="{Binding Uses}" Grid.Column="1" HorizontalOptions="End" ReduceSizeToContent="True"
+                                            Orientation="Horizontal" ItemSpacing="0" Margin="0" >
+                            <dxcv:DXCollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <dxe:CheckEdit IsChecked="{Binding IsUsed}" Margin="0" Label="" Padding="0" HorizontalOptions="End" />
+                                </DataTemplate>
+                            </dxcv:DXCollectionView.ItemTemplate>
+                        </dxcv:DXCollectionView>
+                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding FormattedText}" Margin="20,0,20,0" FontAutoScalingEnabled="True" />
+                    </Grid>
+                </DataTemplate>
+            </dxcv:DXCollectionView.ItemTemplate>
+        </dxcv:DXCollectionView>
+        <dxc:SimpleButton Grid.Row="1" Text="Cast" Command="{Binding CastASpellCommand}"/>
+        <!-- <dxc:SimpleButton Grid.Row="2" Text="Absorb" />-->
+        </Grid>
+</ContentPage>

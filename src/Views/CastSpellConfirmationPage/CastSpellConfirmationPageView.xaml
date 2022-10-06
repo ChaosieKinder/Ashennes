@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+             xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
+             xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
+             x:Name="Page"
+             x:Class="Ashennes.Views.CastSpellConfirmationPage.CastSpellConfirmationPageView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="48" />
+            <RowDefinition Height="48" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+        <dxcv:DXCollectionView SelectionMode="Single"
+                               Grid.Row="0"
+                               Margin="4,0,4,0"
+                               ItemsSource="{Binding Settings.CurrentTurn.Spells}"
+                               SelectedItem="{Binding SelectedSpell, Mode=TwoWay}">
+            <dxcv:DXCollectionView.SelectedItemTemplate>
+                <DataTemplate>
+                    <Grid  BackgroundColor="#333">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="32" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding SpellDefinition.Name}" FontSize="Large"
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                        <Label Text="{Binding SpellExactText}" FontAutoScalingEnabled="True"
+                                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                        <dxc:SimpleButton Text="Edit" BackgroundColor="Grey"
+                                Padding="0" Margin="0" 
+                                Grid.Row="2" Grid.Column="0"
+                                Command="{Binding BindingContext.EditSpellCommand,
+                                        Source={RelativeSource AncestorType={x:Type ContentPage}}}" />
+                        <dxc:SimpleButton Text="Remove" BackgroundColor="Grey"
+                                Padding="0" Margin="0"
+                                Grid.Row="2" Grid.Column="1"
+                                Command="{Binding BindingContext.RemoveSpellCommand,
+                                        Source={RelativeSource AncestorType={x:Type ContentPage}}}" />
+                    </Grid>
+                </DataTemplate>
+            </dxcv:DXCollectionView.SelectedItemTemplate>
+            <dxcv:DXCollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="32" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding SpellDefinition.Name}" FontSize="Large"
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                        <Label Text="{Binding SpellExactText}" FontAutoScalingEnabled="True"
+                                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />
+                        <dxc:SimpleButton
+                                Padding="0" Margin="0" 
+                                Grid.Row="2" Grid.Column="0"
+                                Text="{Binding SpellStatusFailText}"
+                                TextColor="{Binding FailBtnForegroundColor}"
+                                Background="{Binding FailBtnBackgroundBrush}"
+                                IsVisible="{Binding IsSpellFailable}"
+                                Command="{Binding MarkSpellFailCommand}" />
+                        <dxc:SimpleButton
+                                Padding="0" Margin="0" BackgroundColor="Green"
+                                Grid.Row="2" Grid.Column="1"
+                                Text="{Binding SpellStatusSucceedText}"
+                                TextColor="{Binding SuccessBtnForegroundColor}"
+                                Background="{Binding SuccessBtnBackgroundBrush}"
+                                IsVisible="{Binding IsSpellFailable}"
+                                Command="{Binding MarkSpellPassCommand}" />
+                    </Grid>
+                </DataTemplate>
+            </dxcv:DXCollectionView.ItemTemplate>
+        </dxcv:DXCollectionView>
+        <Label Grid.Row="1" HorizontalOptions="Center" FontSize="Body"
+                Text="{Binding Settings.CurrentTurn.HpCostText}" />
+        <dxe:CheckEdit Label="Enable Bardsong Bonus" 
+                       LabelColor="White" LabelFontSize="Body"
+                       HorizontalOptions="Center" VerticalOptions="Center"
+                       CheckBoxAlignment="Center" CheckBoxPosition="Start" 
+                       LabelHorizontalAlignment="End" LabelVerticalAlignment="Center" 
+                           IsChecked="{Binding Settings.IsBardBonusEnabled}"
+                          Grid.Row="2" 
+                          Margin="6,0,6,3" Padding="0"  />
+        <dxc:SimpleButton Text="Add a Spell to Chain" 
+                          Command="{Binding CastAnoutherSpellCommand}" 
+                          Grid.Row="3" 
+                          Margin="6,0,6,3" Padding="0"  />
+        <dxc:SimpleButton Text="Round Results" 
+                          Command="{Binding GotoResultsPageCommand}" 
+                          Grid.Row="4" 
+                          Margin="6,3,6,0" Padding="0" />
+    </Grid>
+</ContentPage>
