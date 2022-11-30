@@ -42,7 +42,8 @@ namespace Ashennes.Models
         {
             _formattedText = FormatSpellString(
                 _baseDamage,
-                3 + _settings.BonusSkillCheckDamage,
+                3,
+                _settings.BonusSkillCheckDamage,
                 _settings.BonusSpellDamage + (_settings.IsBardBonusEnabled && !_isAoe ? _settings.BonusBardSpellDamage : 0),
                 _damageType,
                 IsAoe ? -1 : 1);
@@ -82,7 +83,7 @@ namespace Ashennes.Models
         }
 
 
-        public string FormatSpellStringExact(int baseDamage, int skillcheckDamage, int bonusDamage, string damageType, int targets, bool success)
+        public string FormatSpellStringExact(int baseDamage, int skillcheckDamage, int skillcheckBonusDamage, int bonusDamage, string damageType, int targets, bool success)
         {
             if (_type == CastActionType.None)
                 return _text;
@@ -110,14 +111,14 @@ namespace Ashennes.Models
                     return $"Does {baseDamage + bonusDamage} pts of {damageType} to {targetText}";
                 case CastActionType.SkillTest:
                 case CastActionType.SkillTestAttack:
-                    var bdamage = baseDamage + (success ? skillcheckDamage : 0) + (_isAoe ? 0 : bonusDamage);
+                    var bdamage = baseDamage + (success ? skillcheckDamage : 0) + (_isAoe ? 0 : bonusDamage) + (success ? skillcheckBonusDamage : 0);
                     return $"Does {bdamage} pts of {damageType} to {targetText}";
             }
 
             return "ERROR";
         }
 
-        public string FormatSpellString(int baseDamage, int skillcheckDamage, int bonusDamage, string damageType, int targets)
+        public string FormatSpellString(int baseDamage, int skillcheckDamage, int skillcheckBonusDamage, int bonusDamage, string damageType, int targets)
         {
             if (_type == CastActionType.None)
                 return _text;
@@ -144,7 +145,7 @@ namespace Ashennes.Models
                 case CastActionType.SkillTest:
                 case CastActionType.SkillTestAttack:
                     int minDamage = baseDamage + (_isAoe ? 0 : bonusDamage);
-                    int maxDamage = minDamage + skillcheckDamage;
+                    int maxDamage = minDamage + skillcheckDamage + skillcheckBonusDamage;
                     return $"(Skill ✔) Does {minDamage} or {maxDamage} pts of {damageType} to {targetText}";
             }
 

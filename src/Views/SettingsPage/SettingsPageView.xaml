@@ -66,12 +66,12 @@
                              MaxValue="100" TextHorizontalAlignment="Start"
                              SelectValueOnFocus="True"
                              MaxDecimalDigitCount="0" />
-            <!--<dxe:NumericEdit LabelText="Spell Skill Check Bonus Damage:"
+            <dxe:NumericEdit LabelText="Spell Skill Check Bonus Damage: (Savant)"
                              Value="{Binding Settings.BonusSkillCheckDamage}"
                              MinValue="0"
                              MaxValue="100" TextHorizontalAlignment="Start"
                              SelectValueOnFocus="True"
-                             MaxDecimalDigitCount="0" />-->
+                             MaxDecimalDigitCount="0" />
             <dxe:CheckEdit Label="Enable Bardsong Bonus" LabelColor="White" LabelHorizontalAlignment="End" LabelVerticalAlignment="Center" CheckBoxAlignment="Start" CheckBoxPosition="Start" HorizontalOptions="Center" LabelFontSize="Body"
                            IsChecked="{Binding Settings.IsBardBonusEnabled}"/>
             <dxe:NumericEdit LabelText="Bonus Damage from Bard song:"

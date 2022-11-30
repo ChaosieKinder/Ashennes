@@ -116,13 +116,13 @@ namespace Ashennes.Models
                                         _spellDefinition.Type == CastActionType.SkillTestAttack;
 
                 var modifiedSkillCheckDamage = useSkillTestDamage
-                    ? (3 + _settings.BonusSkillCheckDamage) * (MecSelected && !_spellDefinition.IsAoe ? 2 : 1)
+                    ? 3 * (MecSelected && !_spellDefinition.IsAoe ? 2 : 1)
                     : 0;
 
                 var modifiedBaseDamage = _spellDefinition.IsAoe
                     ? _spellDefinition.BaseDamage
                     : (_spellDefinition.BaseDamage * (MecSelected ? 2 : 1));
-
+                
 
                 var modifiedBonusDamage = _settings.BonusSpellDamage
                     + (_settings.IsBardBonusEnabled ? _settings.BonusBardSpellDamage : 0)
@@ -136,12 +136,14 @@ namespace Ashennes.Models
                 spellTextBuilder.AppendLine(_spellDefinition.FormatSpellString(
                     modifiedBaseDamage,
                     modifiedSkillCheckDamage,
+                    _settings.BonusSkillCheckDamage,
                     modifiedBonusDamage,
                     energyType,
                     ForkSelected ? 2 : 1));
                 spellTextExactBuilder.AppendLine(_spellDefinition.FormatSpellStringExact(
                     modifiedBaseDamage,
                     modifiedSkillCheckDamage,
+                    _settings.BonusSkillCheckDamage,
                     modifiedBonusDamage,
                     energyType,
                     ForkSelected ? 2 : 1,

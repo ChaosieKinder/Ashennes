@@ -51,7 +51,7 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="75" />
+                            <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}" FontAutoScalingEnabled="True" />
                         <dxcv:DXCollectionView ItemsSource="{Binding Uses}" Grid.Column="1" HorizontalOptions="End" ReduceSizeToContent="True"

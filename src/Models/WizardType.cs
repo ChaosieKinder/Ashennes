@@ -7,6 +7,8 @@ namespace Ashennes.Models
         [Description("Human Wizard")]
         HumanWizard,
         [Description("Elf Wizard")]
-        ElfWizard
+        ElfWizard,
+        Illusionist,
+        Sorcerer
     }
 }
