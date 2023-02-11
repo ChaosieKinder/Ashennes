@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ash="clr-namespace:Ashennes.Controls"
              xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
@@ -12,7 +12,7 @@
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="4"/>
             </Style>
-            <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <ash:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
@@ -51,14 +51,14 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="125" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}" FontAutoScalingEnabled="True" />
                         <dxcv:DXCollectionView ItemsSource="{Binding Uses}" Grid.Column="1" HorizontalOptions="End" ReduceSizeToContent="True"
                                             Orientation="Horizontal" ItemSpacing="0" Margin="0" >
                             <dxcv:DXCollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <dxe:CheckEdit IsChecked="{Binding IsUsed}" Margin="0" Label="" Padding="0" HorizontalOptions="End" />
+                                    <dxe:CheckEdit IsChecked="{Binding IsUsed}" Margin="0" Label="" Padding="0" HorizontalOptions="End" LabelFontSize="2" />
                                 </DataTemplate>
                             </dxcv:DXCollectionView.ItemTemplate>
                         </dxcv:DXCollectionView>

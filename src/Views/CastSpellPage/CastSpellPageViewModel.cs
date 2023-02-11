@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DevExpress.Mvvm.CodeGenerators;
 using System.Windows.Input;
-using Ashennes.Models;
 using CommunityToolkit.Mvvm.Input;
+using Ashennes.Models;
 using ColorHelper = Ashennes.Helpers.ColorHelper;
 
 namespace Ashennes.Views.CastSpellPage
@@ -34,45 +34,45 @@ namespace Ashennes.Views.CastSpellPage
         [GenerateProperty]
         private Color _mecForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
-        private Brush _mecBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _mecBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private bool _canAlter = false;
         [GenerateProperty]
-        private Brush _alterBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Color _alterBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
         [GenerateProperty]
         private Color _alterForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
-        private Brush _assureBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _assureBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _assureForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
         private bool _canBoost = false;
         [GenerateProperty]
-        private Brush _boostBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _boostBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _boostForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
-        private Brush _conserveBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _conserveBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _conserveForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
         private bool _canFork = false;
         [GenerateProperty]
-        private Brush _forkBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _forkBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _forkForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
-        private Brush _intensifyBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _intensifyBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _intensifyForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
-        private Brush _quickenBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _quickenBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _quickenForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty]
         private bool _canSharpen = false;
         [GenerateProperty]
-        private Brush _sharpenBackgroundBrush = ColorHelper.DeselectedBackgroundColor;
+        private Brush _sharpenBackgroundBrush = ColorHelper.DeselectedBackgroundBrush;
         [GenerateProperty]
         private Color _sharpenForegroundColor = ColorHelper.DarkForegroundColor;
         [GenerateProperty(SetterAccessModifier = AccessModifier.Protected)]
@@ -170,7 +170,7 @@ namespace Ashennes.Views.CastSpellPage
         protected void OnMecSelectedChanged()
         {
             _spell.MecSelected = _mecSelected;
-            MecBackgroundBrush = _mecSelected ? ColorHelper.SelectedBackgroundColor : ColorHelper.DeselectedBackgroundColor;
+            MecBackgroundBrush = _mecSelected ? ColorHelper.SelectedBackgroundBrush : ColorHelper.DeselectedBackgroundBrush;
             MecForegroundColor = _mecSelected ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor;
         }
 
@@ -184,56 +184,56 @@ namespace Ashennes.Views.CastSpellPage
                     : ColorHelper.DisabledBackgroundColor;
 
             AssureBackgroundBrush = _spell.AssureSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleAssure()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             BoostBackgroundBrush = _spell.BoostSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleBoost()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             ConserveBackgroundBrush = _spell.ConserveSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleConserve()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             ForkBackgroundBrush = _spell.ForkSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleFork()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             IntensifyBackgroundBrush = _spell.IntensifySelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleIntensify()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             QuickenBackgroundBrush = _spell.QuickenSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleQuicken()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             SharpenBackgroundBrush = _spell.SharpenSelected
-                ? ColorHelper.SelectedBackgroundColor
+                ? ColorHelper.SelectedBackgroundBrush
                 : CanToggleSharpen()
-                    ? ColorHelper.DeselectedBackgroundColor
-                    : ColorHelper.DisabledBackgroundColor;
+                    ? ColorHelper.DeselectedBackgroundBrush
+                    : ColorHelper.DisabledBackgroundBrush;
 
             // Correct foreground brushes based on background brushes.
             AlterForegroundColor = (AlterBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            AssureForegroundColor = (AssureBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            BoostForegroundColor = (BoostBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            ConserveForegroundColor = (ConserveBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            ForkForegroundColor = (ForkBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            IntensifyForegroundColor = (IntensifyBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            QuickenForegroundColor = (QuickenBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
-            SharpenForegroundColor = (SharpenBackgroundBrush == ColorHelper.SelectedBackgroundColor ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            AssureForegroundColor = (AssureBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            BoostForegroundColor = (BoostBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            ConserveForegroundColor = (ConserveBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            ForkForegroundColor = (ForkBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            IntensifyForegroundColor = (IntensifyBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            QuickenForegroundColor = (QuickenBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
+            SharpenForegroundColor = (SharpenBackgroundBrush == ColorHelper.SelectedBackgroundBrush ? ColorHelper.LightForegroundColor : ColorHelper.DarkForegroundColor);
 
         }
 

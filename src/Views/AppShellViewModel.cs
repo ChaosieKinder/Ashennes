@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Ashennes.Models;
-using CommunityToolkit.Mvvm.Input;
 using DevExpress.Mvvm.CodeGenerators;
 
 namespace Ashennes.Views

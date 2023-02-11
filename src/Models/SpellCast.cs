@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using DevExpress.Mvvm.CodeGenerators;
+using System.ComponentModel;
+using System.Text;
+using System.Windows.Input;
 using ColorHelper = Ashennes.Helpers.ColorHelper;
 
 

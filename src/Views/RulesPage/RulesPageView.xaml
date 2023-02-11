@@ -4,7 +4,7 @@
              xmlns:dxc="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
              xmlns:dxe="clr-namespace:DevExpress.Maui.Editors;assembly=DevExpress.Maui.Editors"
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
-             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:ash="clr-namespace:Ashennes.Controls"
              x:Class="Ashennes.Views.RulesPage.RulesPageView"
              Title="Rule Book">
     <ContentPage.Resources>
@@ -18,7 +18,7 @@
             <Setter Property="BackgroundColor" Value="#333" />
         </Style>
         <ResourceDictionary>
-            <mct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <ash:InvertedBoolConverter x:Key="InvertedBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView Orientation="Vertical" IsClippedToBounds="False" >

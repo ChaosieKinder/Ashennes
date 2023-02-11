@@ -1,5 +1,5 @@
 ﻿using DevExpress.Maui;
-using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace Ashennes
 {
@@ -10,7 +10,6 @@ namespace Ashennes
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
                 .UseDevExpress()
                 .ConfigureFonts(fonts =>
                 {
@@ -33,6 +32,10 @@ namespace Ashennes
             builder.Services.AddScoped<Views.CastSpellConfirmationPage.CastSpellConfirmationPageViewModel>();
             builder.Services.AddScoped<Views.CastSpellResultsPage.CastSpellResultsPageView>();
             builder.Services.AddScoped<Views.CastSpellResultsPage.CastSpellResultsPageViewModel>();
+
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }

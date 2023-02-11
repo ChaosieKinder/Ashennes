@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.Input;
 using DevExpress.Mvvm.CodeGenerators;
 using System.Windows.Input;
 using Ashennes.Models;
-using CommunityToolkit.Mvvm.Input;
 
 namespace Ashennes.Views.CastSpellResultsPage
 {

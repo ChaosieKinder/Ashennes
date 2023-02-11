@@ -8,7 +8,6 @@ using System.Windows.Input;
 using Ashennes.Models;
 using CommunityToolkit.Mvvm.Input;
 
-
 namespace Ashennes.Views.SpellListPage
 {
     [GenerateViewModel]

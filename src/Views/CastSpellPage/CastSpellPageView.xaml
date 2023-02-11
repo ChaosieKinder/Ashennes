@@ -7,7 +7,7 @@
              xmlns:dxcv="clr-namespace:DevExpress.Maui.CollectionView;assembly=DevExpress.Maui.CollectionView"
              x:Class="Ashennes.Views.CastSpellPage.CastSpellPageView">
     <StackLayout>
-        <dxe:ComboBoxEdit LabelText="Select a spell" 
+        <dxe:ComboBoxEdit LabelText="Select a spell" Margin="10"
                           PlaceholderText="Select a spell"
                           DisplayMember="NameDropdownDisplay"
                           ItemsSource="{Binding Settings.Spells}" 
@@ -16,7 +16,7 @@
                VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
                HorizontalTextAlignment="Center" />
 
-        <Grid ColumnSpacing="8" RowSpacing="8" Margin="10,10,10,10">
+        <Grid ColumnSpacing="8" RowSpacing="8" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -34,17 +34,20 @@
                               TextColor="{Binding MecForegroundColor}"
                               Background="{Binding MecBackgroundBrush}"
                               Command="{Binding ToggleMECCommand}" />
-            <dxe:ComboBoxEdit Grid.Column="0" Grid.Row="1"
-                              HeightRequest="45"
-                              TextHorizontalAlignment="Center"
-                              BorderThickness="0"
-                              DisabledBorderThickness="0"
-                              FocusedBorderThickness="0"
+            <dxe:ComboBoxEdit Grid.Column="0" 
+                              Grid.Row="1"
+                              BoxMinHeight="0"
+                              Margin="0"
+                              IsDropDownIconVisible="False"
+                              Style="{StaticResource CastSpellPageComboBoxEdit}"
                               IsVisible="{Binding CanAlter}"
+                              FocusedBorderColor="{Binding AlterBackgroundBrush}"
+                              BackgroundColor="{Binding AlterBackgroundBrush}"
                               TextColor="{Binding AlterForegroundColor}"
-                              Background="{Binding AlterBackgroundBrush}"
+                              FocusedLabelColor="{Binding AlterForegroundColor}"
                               ItemsSource="{Binding AlterEnergyTypes}" 
-                              SelectedItem="{Binding AlterSelectedEnergyType}" />
+                              SelectedItem="{Binding AlterSelectedEnergyType}">
+            </dxe:ComboBoxEdit>
             <dxc:SimpleButton Text="Assure"
                               Grid.Column="1" Grid.Row="1"
                               IsVisible="{Binding Settings.IsAshenne}"

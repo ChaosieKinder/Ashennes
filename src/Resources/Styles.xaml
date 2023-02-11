@@ -9,7 +9,7 @@
 
     <Color x:Key="Primary">#DC3030</Color> <!-- 512BD4-->
     <Color x:Key="Light">#DFD8F7</Color>
-    <Color x:Key="Dark">#AC1010</Color> <!-- 2B0B98-->
+    <Color x:Key="Dark">#AC1010</Color>  <!-- 2B0B98-->
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="LightGray">#E5E5E1</Color>
@@ -457,12 +457,13 @@
     </Style>
 
 
-    <Style TargetType="dxe:ComboBoxEdit">
+    <Style TargetType="dxe:ComboBoxEdit" x:Key="AshennesBaseComboBoxEdit">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
         <Setter Property="FocusedBorderColor" Value="{StaticResource Primary}" />
         <Setter Property="FocusedLabelColor" Value="{StaticResource Primary}" />
     </Style>
-
+    <Style TargetType="dxe:ComboBoxEdit" BasedOn="{StaticResource AshennesBaseComboBoxEdit}" />
     <Style TargetType="dxe:TextEdit">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FocusedBorderColor" Value="{StaticResource Primary}" />
@@ -475,6 +476,7 @@
         <Setter Property="FocusedLabelColor" Value="{StaticResource Primary}" />
     </Style>
     <Style TargetType="dxc:SimpleButton">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"  />
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
     </Style>
     <Style TargetType="dxe:CheckEdit" >
