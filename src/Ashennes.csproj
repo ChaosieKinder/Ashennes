@@ -30,6 +30,15 @@
 		<AndroidSigningKeyPass></AndroidSigningKeyPass>
 		<AndroidSigningStorePass></AndroidSigningStorePass>
 	</PropertyGroup>
+	<!-- iOS Signing-->
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+		<RunTimeIdentifier>ios-arm64</RunTimeIdentifier>
+		<PlatformTarget>arm64</PlatformTarget>
+		<CodesignProvision>Ashennes Provisioning Profile</CodesignProvision>
+		<ArchiveOnBuild>true</ArchiveOnBuild>
+		<TcpPort>58181</TcpPort>
+		<PublishTrimmed>true</PublishTrimmed>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <LangVersion>preview</LangVersion>
 	</PropertyGroup>
