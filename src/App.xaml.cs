@@ -8,6 +8,7 @@ namespace Ashennes
         {
             InitializeComponent();
             MainPage = shell;
+            UserAppTheme = AppTheme.Dark;
 
             ICollection<ResourceDictionary> mergedDictionaries = Current.Resources.MergedDictionaries;
             if (mergedDictionaries is not null)

@@ -25,7 +25,6 @@
         <c:EnumItemsSource
             x:Key="MedallionTypeItemsSource"
             Type="{x:Type m:MedallionType}"/>
-
     </ContentPage.Resources>
     <ScrollView Margin="10" VerticalOptions="StartAndExpand">
         <VerticalStackLayout>
@@ -33,7 +32,7 @@
                               IsVisible="{Binding Settings.CanEditInitialSettings}"
                               ItemsSource="{StaticResource WizardTypeItemsSource}"
                               SelectedValue="{Binding Settings.SelectedClass, Converter={StaticResource WizardTypeItemsSource}}" />
-            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}" BackgroundColor="Black">
                 <HorizontalStackLayout >
                     <Label Text="Class:" Margin="0,0,5,0" />
                     <Label Text="{Binding Settings.SelectedClass, Converter={StaticResource WizardTypeItemsSource}}" />
@@ -43,7 +42,7 @@
                               IsVisible="{Binding Settings.CanEditInitialSettings}"
                               ItemsSource="{StaticResource MedallionTypeItemsSource}"
                               SelectedValue="{Binding Settings.SelectedMedallion, Converter={StaticResource MedallionTypeItemsSource}}" />
-            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}" BackgroundColor="Black">
                 <HorizontalStackLayout>
                     <Label Text="Necklace:" Margin="0,0,5,0" />
                     <Label Text="{Binding Settings.SelectedMedallion, Converter={StaticResource MedallionTypeItemsSource}}" />
@@ -53,12 +52,11 @@
                               IsVisible="{Binding Settings.CanEditInitialSettings}"
                               ItemsSource="{Binding LevelOptions}"
                               SelectedItem="{Binding Settings.Level}" />
-            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}">
+            <Border IsVisible="{Binding Settings.CanEditInitialSettings, Converter={StaticResource InvertedBoolConverter}}" BackgroundColor="Black">
                 <HorizontalStackLayout>
                     <Label Text="Level:" Margin="0,0,5,0" />
                     <Label Text="{Binding Settings.Level}" />
                 </HorizontalStackLayout>
-
             </Border>
             <dxe:NumericEdit LabelText="Spell Bonus Damage:"
                              Value="{Binding Settings.BonusSpellDamage}"

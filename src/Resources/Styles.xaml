@@ -459,7 +459,7 @@
 
     <Style TargetType="dxe:ComboBoxEdit" x:Key="AshennesBaseComboBoxEdit">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
-        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Black}" />
         <Setter Property="FocusedBorderColor" Value="{StaticResource Primary}" />
         <Setter Property="FocusedLabelColor" Value="{StaticResource Primary}" />
     </Style>
